@@ -43,7 +43,7 @@
   
                     <div class="mb-3 mt-2 input-group">
                         <span class="input-group-text border-end-0"  style="background-color: transparent; width: 27px;"><img src="Gambar/person-fill.svg" width="20px" alt="" srcset=""></span>
-                        <input type="text"  name="name" class="form-control @error('name') is-invalid @enderror border-start-0 "  id="name" placeholder="Name" required>
+                        <input type="text"  name="name" class="form-control @error('name') is-invalid @enderror border-start-0 "  id="name" placeholder="Name" required oninvalid="this.setCustomValidity('Nama harus diisi')" oninput="setCustomValidity('')">
                         @error('name')
                         <div class="invalid-feedback"></div>     
                           {{ $message }}                         

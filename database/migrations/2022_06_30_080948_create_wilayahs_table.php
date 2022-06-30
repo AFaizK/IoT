@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAmonias extends Migration
+class CreateWilayahsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateAmonias extends Migration
      */
     public function up()
     {
-        Schema::create('amonias', function (Blueprint $table) {
+        Schema::create('wilayahs', function (Blueprint $table) {
             $table->id();
-            $table->string('NH3');
             $table->timestamps();
+            $table->string('wilayah');
         });
     }
 
@@ -27,6 +27,6 @@ class CreateAmonias extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('amonias');
+        Schema::dropIfExists('wilayahs');
     }
 }

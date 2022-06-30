@@ -18,4 +18,7 @@ use App\Http\Controllers\DataSensorController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
 Route::post('/esp', [DataSensorController::class, 'store']);
+
+

@@ -14,7 +14,8 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "laraveldaily/laravel-charts": "^0.1.29",
-        "livewire/livewire": "^2.10"
+        "livewire/livewire": "^2.10",
+        "maatwebsite/excel": "^3.1"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

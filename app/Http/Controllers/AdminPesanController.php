@@ -1,12 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
-use App\Models\Deskripsi;
 use App\Models\ContactUs;
+use Illuminate\Http\Request;
 
-class PesanController extends Controller
+class AdminPesanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,12 +12,13 @@ class PesanController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    { 
+    {
         return view('admin.pesan.pesan',[
            
             'title'=>'contact',
             'contact_us' =>  ContactUs::paginate(2)
         ]);
+    
     }
 
     /**
@@ -40,55 +39,58 @@ class PesanController extends Controller
      */
     public function store(Request $request)
     {
-        
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\ContactUs  $contactus
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
         $contactus = ContactUs::find($id)->first();
-        return view('admin.pesan.show',compact('contactus'));
-        //  return view('admin.pesan.show', [
-        //      "title" => "contact",
-        //       "contact_us" => $contactus
-        // ]);
+        return view('admin.pesan.show',[
+                "title" => "contact",
+                "contact_us" => $contactus
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\ContactUs  $contactus
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(ContactUs $contactus)
+    public function edit($id)
     {
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\ContactUs  $contactus
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ContactUs $contactus)
+    public function update(Request $request, $id)
     {
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\ContacUs  $contactus
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ContactUs $contactus)
+    public function destroy(ContactUs $contactus, $id)
     {
-        ContactUs::destroy($contactus->id);
+        $contactus = ContactUs::find($id);
+        $contactus->delete();
+        // ContactUs::destroy($contactus->id);
         return redirect('/admin/pesan/pesan')->with('success','Pesan sekarang sudah dihapus');
     }
 }

@@ -1,52 +1,18 @@
 @extends('layouts.main')
 
 @section('home')
-{{-- <div class="row m-2">
-    <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
-      <div class="card ">
-        <div class="card-body">
-          <img src="Gambar/high-temperature.png" class="float-start position-absolute" style="margin-top: -10px;" height="50px" width="50px" alt="" srcset="">
-          <p class="card-title text-end">34 C</p>
-        </div>
-        <div class="card-footer text-muted">
-          2 days ago
-        </div>
-      </div>
-        </div>
-        <div class="col-lg-3 col-md-6  col-sm-6 mb-4">
-          <div class="card ">
-            <div class="card-body">
-              <img src="Gambar/carbon-dioxide.png" class="float-start position-absolute" style="margin-top: -10px;" height="55px" width="55px" alt="" srcset="">
-              <p class="card-title text-end">34 C</p>
-            </div>
-            <div class="card-footer text-muted">
-              2 days ago
-            </div>
-          </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6  mb-4">
-              <div class="card ">
-                <div class="card-body">
-                  <img src="Gambar/carbon-monoxide.png" class="float-start position-absolute" style="margin-top: -10px;" height="50px" width="50px" alt="" srcset="">
-                  <p class="card-title text-end">34 C</p>
-                </div>
-                <div class="card-footer text-muted">
-                  2 days ago
-                </div>
-              </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 mb-4">
-                  <div class="card ">
-                    <div class="card-body">
-                      <img src="Gambar/ch4.png" class="float-start position-absolute" style="margin-top: -10px;" height="50px" width="50px" alt="" srcset="">
-                      <p class="card-title text-end">34 C</p>
-                    </div>
-                    <div class="card-footer text-muted">
-                      2 days ago
-                    </div>
-                  </div>
-                   </div>         
-  </div>    --}}
+ <!-- Default dropend button -->
+  <div class="btn-group m-5">
+    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+      Right-aligned menu
+    </button>
+    <ul class="dropdown-menu dropdown-menu-end">
+      <li><a class="dropdown-item" href="#">Menu item</a></li>
+      <li><a class="dropdown-item" href="#">Menu item</a></li>
+      <li><a class="dropdown-item" href="#">Menu item</a></li>
+    </ul>
+  </div>
+  
   <div class="row m-3">
     <div class="col-lg-4 col-md-6 col-sm-6 mb-4">
         <div class="card shadow-lg rounded-3" style="height: 200px;">
@@ -54,12 +20,12 @@
             <p class="card-title">CH4 <span class="float-end">{{ $terbaru->created_at }}</span></p>
                 <p class="card-text text-center" style="font-size: 40px">{{ $terbaru->CH4 }} ppm</p>
           </div>
-          @if ($terbaru->CH4 <= '50' )
+          @if ($terbaru->CH4 <= '0.1' )
           <div class="card-footer" style="background-color: green; font-weight: bold;">
               <span class="text-center" ><img src="Gambar/smiling.png"   height="30px" width="30px" alt="" srcset=""> Keadaan Normal !! </span>
           </div>
           @endif
-          @if ($terbaru->CH4 > "50")
+          @if ($terbaru->CH4 > "0.1")
           <div class="card-footer" style="background-color: red; font-weight: bold;">
               <span class="text-center" ><img src="Gambar/smiling.png"   height="30px" width="30px" alt="" srcset=""> Keadaan Memburuk !! </span>
           </div>                           
@@ -72,12 +38,12 @@
                 <p class="card-title">NH3 <span class="float-end">{{ $terbaru2->created_at }}</span></p>
                 <p class="card-text text-center" style="font-size: 40px">{{ $terbaru2->NH3 }} ppm</p>
               </div>
-              @if ($terbaru2->NH3 <= "31" )
+              @if ($terbaru2->NH3 <= "0.1" )
                 <div class="card-footer" style="background-color: green; font-weight: bold;">
                     <span class="text-center" ><img src="Gambar/smiling.png"   height="30px" width="30px" alt="" srcset=""> Keadaan Normal !! </span>
                 </div>
               @endif
-              @if ($terbaru2->NH3 >= "50")
+              @if ($terbaru2->NH3 >= "0.1")
                 <div class="card-footer" style="background-color: red; font-weight: bold;">
                     <span class="text-center" ><img src="Gambar/smiling.png"   height="30px" width="30px" alt="" srcset=""> Keadaan Memburuk !! </span>
                 </div>                           
@@ -90,12 +56,12 @@
                   <p class="card-title">CO <span class="float-end">{{ $terbaru3->created_at }}</span></p>
                   <p class="card-text text-center" style="font-size: 40px">{{ $terbaru3->CO }} ppm</p>
                 </div>
-                    @if ($terbaru2->CO <= "31" )
+                    @if ($terbaru3->CO <= "0.1" )
                     <div class="card-footer" style="background-color: green; font-weight: bold;">
                         <span class="text-center" ><img src="Gambar/smiling.png"   height="30px" width="30px" alt="" srcset=""> Keadaan Normal !! </span>
                     </div>
                   @endif
-                  @if ($terbaru2->CO >= "50")
+                  @if ($terbaru3->CO >= "0.1")
                     <div class="card-footer" style="background-color: red; font-weight: bold;">
                         <span class="text-center" ><img src="Gambar/smiling.png"   height="30px" width="30px" alt="" srcset=""> Keadaan Memburuk !! </span>
                     </div>                           
@@ -171,6 +137,7 @@
                 <li class="nav-item">
                     <a class="nav-link"  href="#CH4-bulanan" role="tab" aria-controls="CH4-bulanan" aria-selected="false">Chart Bulanan</a>
                 </li>
+               
                 </ul>
             </div>
             <div class="card-body">
@@ -185,6 +152,7 @@
                     <div class="tab-pane" id="CH4-bulanan" role="tabpanel" aria-labelledby="CH4-tab">  
                         <canvas  class="rounded-3" id="CH4-chart-bulanan"></canvas>
                     </div>
+                    
                 </div>
             </div>
         </div>
@@ -202,19 +170,22 @@
                 <li class="nav-item">
                     <a class="nav-link"  href="#gabungan-bulanan" role="tab" aria-controls="gabungan-bulanan" aria-selected="false">Chart Bulanan</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link"  href="#perjam" role="tab" aria-controls="perjam" aria-selected="false">Perjam</a>
+                </li>
                 </ul>
             </div>
             <div class="card-body">
-            
                 {{-- <h4 class="card-title">Kadar</h4> --}}
-
                 <div class="tab-content mt-3">
                     <div class="tab-pane active" id="gabungan-harian" role="tabpanel">
                         <canvas class="rounded-3"  id="gabungan-chart"></canvas>
                     </div>
-                    
                     <div class="tab-pane" id="gabungan-bulanan" role="tabpanel" aria-labelledby="bulanan-tab">  
                         <canvas class="rounded-3"  id="gabungan-chart-bulanan"></canvas>
+                    </div>
+                    <div class="tab-pane" id="perjam" role="tabpanel" aria-labelledby="perjam-tab">  
+                        <canvas class="rounded-3"  id="chart-perjam"></canvas>
                     </div>
                 </div>
             </div>
@@ -232,6 +203,8 @@
 
     //   $(function(){
           //get the pie chart canvas
+          var cDataperjam = JSON.parse(`<?php echo $semua; ?>`);
+
           var cData = JSON.parse(`<?php echo $chart_data; ?>`);
           var cData1 = JSON.parse(`<?php echo $chart_data1; ?>`);
           var cData2 = JSON.parse(`<?php echo $chart_data2; ?>`);
@@ -248,8 +221,23 @@
           var ctx33 = $("#CH4-chart-bulanan");
           var ctx4 = $("#gabungan-chart");
           var ctx44 = $("#gabungan-chart-bulanan");
+          var ctxperjam = $("#chart-perjam");
      
           //pie chart data
+          var dataperjam = {
+            labels: cDataperjam.label,
+            datasets: [
+              {
+                label: "Kadar CO" ,
+                data: cDataperjam.data,
+                backgroundColor:"rgba(158, 118, 80, 0.288)",
+                borderColor:"rgba(158, 118, 80, 1)",
+                borderWidth: 2,
+                hoverBackgroundColor: "rgba(158, 118, 80, 0.58)",
+                hoverBorderColor: "rgba(158, 118, 80, 1)",
+              }
+            ]
+          };
           var data = {
             labels: cData.label,
             datasets: [
@@ -368,7 +356,7 @@
             ]
           };
           var data44 = {
-            labels: cData.label,
+            labels: cData22.label,
             datasets: [
               {
                 label: "Kadar CO" ,
@@ -421,6 +409,11 @@
           };
      
           //create Pie Chart class object
+          var chart = new Chart(ctxperjam, {
+            type: "bar",
+            data: dataperjam,
+            options: options
+          });
           var chart = new Chart(ctx, {
             type: "bar",
             data: data,

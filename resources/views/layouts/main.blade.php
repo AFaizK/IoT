@@ -37,45 +37,46 @@
                 </li>
                
                     <li class="">
-                        <a class="{{ ($title === "Dashboard") ? 'active' : '' }}" href="/">
+                        <a class="{{ ($title === "Dashboard") ? 'active' : '' }}" href="{{ url('/') }}">
                             <i class='bi bi-house icon' ></i>
                             <span class="text nav-text ">Dashboard</span>
                         </a>
                     </li>
+                    @can('user')
                     <li class="">
-                        <a class="{{ ($title === "NH3") ? 'active' : '' }}" href="/nh3">
+                        <a class="{{ ($title === "NH3") ? 'active' : '' }}" href="{{ ('/nh3') }}">
                             <i class='bx bx-bar-chart-alt-2 icon' ></i>
                             <span class="text nav-text">NH3</span>
                         </a>
                     </li> <li class="">
-                        <a class="{{ ($title === "CH4") ? 'active' : '' }}" href="/ch4">
+                        <a class="{{ ($title === "CH4") ? 'active' : '' }}" href="{{ url('/ch4') }}">
                             <i class='bx bx-bar-chart-alt-2 icon' ></i>
                             <span class="text nav-text">CH4</span>
                         </a>
                     </li> <li class="">
-                        <a class="{{ ($title === "CO") ? 'active' : '' }}" href="/co">
+                        <a class="{{ ($title === "CO") ? 'active' : '' }}" href="{{ url('/co') }}">
                             <i class='bx bx-bar-chart-alt-2 icon' ></i>
                             <span class="text nav-text">CO</span>
                         </a>
                     </li>
-                    @can('user')
+                    @endcan
                     <li class="">
-                        <a class="" href="/contactus">
+                        <a class="" href="{{ url('/contactus') }}">
                             <i class='bi bi-envelope icon' ></i>
                             <span class="text nav-text">Contact Us</span>
                         </a>
                     </li>
-                    @endcan
+                
                   
                     @can('is_admin')
                     <li class="">
-                        <a class="" href="/admin/pesan/pesan">
+                        <a class="" href="{{ url('admin/pesan/pesan') }}">
                             <i class='bi bi-envelope icon' ></i>
                             <span class="text nav-text">Pesan</span>
                         </a>
                     </li>
                     <li class="">
-                        <a class="" href="/admin/deskripsi/deskripsi">
+                        <a class="" href="{{ url('/admin/deskripsi/deskripsi') }}">
                             <i class='bi bi-file icon' ></i>
                             <span class="text nav-text">Input data</span>
                         </a>
@@ -86,36 +87,26 @@
 
             <div class="bottom-content">
                 @auth
-                {{-- <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Welcome, {{ auth()->user()->name }}
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <li><a class="dropdown-item" href="#">Log Out</a></li>
-                    </ul>
-                  </li> --}}
-                  <form action="/logout" method="post">
+                  <form action="/logout" class="row" method="post">
                     @csrf
-                    <li class= "row">
-                        <button type="submit" class="btn-group dropdown-item" style="right: 8px"  >
-                            <i class='bi bi-box-arrow-left icon'  ></i>
-                            <span class="text nav-text">Logout</span>
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-secondary dropdown-toggle"  data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">                            
+                            {{-- <i class='bi bi-box-arrow-right icon' ></i> --}}
+                            Welcome, {{ auth()->user()->name }}
                         </button>
-                    </li>
+                        <ul class="dropdown-menu dropdown-menu-lg-end">
+                          <li><button class="dropdown-item" >Logout</button></li>
+                        </ul>
+                      </div>
                 </form>
                 @else
                   <li class="">
-                    <a class="" href="/login">
+                    <a class="" href="{{ url('/login') }}">
                         <i class='bi bi-box-arrow-right icon' ></i>
                         <span class="text nav-text">Login</span>
                     </a>
                   </li>
                 @endauth
-               
-
-
-            
-
                 <li class="mode">
                     <div class="sun-moon">
                         <i class='bi bi-moon icon moon'></i>

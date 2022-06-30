@@ -8,8 +8,10 @@ use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\ViewUserDeskripsiController;
 use App\Http\Controllers\AdminDeskripsiController;
 use App\Http\Controllers\DataSensorController;
+use App\Http\Controllers\AdminPesanController;
 use App\Http\Controllers\PesanController;
 use App\Http\Controllers\DeskripsiSensorController;
+use App\Http\Controllers\ExportController;
 use App\Http\Controllers\KarbonDioksidaController;
 
 
@@ -63,12 +65,15 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
 
-Route::post('/dashboard', [RegisterController::class, 'store'])->middleware('auth');
+// Route::post('/dashboard', [RegisterController::class, 'store'])->middleware('auth');
 
 Route::get('/contactus', [ContactUsController::class, 'index']);
 Route::post('/contactus', [ContactUsController::class, 'store']);
 
-Route::resource('/admin/pesan/pesan', PesanController::class)->middleware('is_admin');
+Route::resource('/admin/pesan/pesan', AdminPesanController::class)->middleware('is_admin');
+// Route::get('/admin/pesan/pesan/{contact_us}',[AdminPesanController::class, 'show'])->middleware('is_admin');
+// Route::delete('/admin/pesan/pesan/{contact_us}',[AdminPesanController::class, 'destroy'])->middleware('is_admin');
+// route::post('/admin/pesan/pesan', PesanController::class)->middleware('is_admin');
  
 Route::resource('/admin/deskripsi/deskripsi', AdminDeskripsiController::class)->middleware('is_admin');
 
@@ -81,6 +86,12 @@ Route::get('/admin/deskripsi/tambahdeskripsi', function () {
 // Data masuk ke database
 // Route::get('/esp', [DataSensorController::class, 'store']);
 // Route::post('/esp/{CO}/{NH3}/{CH4}', [DataSensorController::class, 'store']);
+
+
+
+// export excel
+Route::get('/exportch4', [ExportController::class, 'exportch4']);
+
 
 
 

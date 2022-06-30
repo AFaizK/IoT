@@ -1,6 +1,6 @@
-@extends('layouts.adminMain')
+@extends('layouts.main')
 
-@section('container')
+@section('home')
     <div class="row m-2">
       <div class="col-md-12">
         <div class="card">
@@ -16,6 +16,10 @@
             @endif 
           </div>
           <div class="card-body all-icons">
+            <form class="d-flex justify-content-end mb-4">
+                <input class="form me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
             <div class="row">
               <table class="table ">
                 <thead>
@@ -36,15 +40,10 @@
                         <td>{{ $contact->email }}</td>
                         <td class="">{{ $contact->pesan }}</td>
                         <td class="td-actions text-right" style="text-align-last: center;">
-                            <a href="/admin/deskripsi/{{ $contact->id }}"><button type="button" rel="tooltip" class="badge btn-danger btn-link btn-icon btn-sm m-2">
+                            <a href="/admin/pesan/pesan/{{ $contact->id }}"><button type="button" rel="tooltip" class="badge btn-danger btn-link btn-icon btn-sm m-2">
                                 <i class="bi bi-eye"></i>
                             </a>
-                            <a href="/admin/deskripsi/{{ $contact->id }}/edit"><button type="button" rel="tooltip" class="badge btn-danger btn-link btn-icon btn-sm m-2">
-                                <i class="bi bi-pencil-square"></i>
-                            </a>
-                            </button>
-
-                            <form action="/admin/deskripsi/{{ $contact->id }}" method="post" class="d-inline">
+                            <form action="/admin/pesan/pesan/{{ $contact->id }}" method="post" class="d-inline">
                             @method('delete')
                             @csrf
                                 <button  rel="tooltip" onclick="return confirm('apakah kamu yakin??')" class="badge btn-danger btn-link btn-icon btn-sm border-0">
