@@ -81,6 +81,12 @@
                             <span class="text nav-text">Input data</span>
                         </a>
                     </li>
+                    <li class="">
+                        <a class="" href="{{ url('/admin/lokasi/lokasi') }}">
+                            <i class='bi bi-file icon' ></i>
+                            <span class="text nav-text">Lokasi</span>
+                        </a>
+                    </li>
                     @endcan
                 
             </div>

@@ -5,7 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class wilayah extends Model
+class Wilayah extends Model
 {
     use HasFactory;
+    protected $guarded = ['id'];
+    //        protected $fillable = [
+    //     'wilayah',
+    //     'data_sensor_id',
+    // ];
+
+      public function data_sensor(){
+        return $this->belongsTo(data_sensors::class);
+    }
+    
 }

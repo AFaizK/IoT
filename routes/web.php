@@ -12,6 +12,7 @@ use App\Http\Controllers\AdminPesanController;
 use App\Http\Controllers\PesanController;
 use App\Http\Controllers\DeskripsiSensorController;
 use App\Http\Controllers\ExportController;
+use App\Http\Controllers\LokasiController;
 use App\Http\Controllers\KarbonDioksidaController;
 
 
@@ -76,12 +77,17 @@ Route::resource('/admin/pesan/pesan', AdminPesanController::class)->middleware('
 // route::post('/admin/pesan/pesan', PesanController::class)->middleware('is_admin');
  
 Route::resource('/admin/deskripsi/deskripsi', AdminDeskripsiController::class)->middleware('is_admin');
-
 Route::get('/admin/deskripsi/tambahdeskripsi', function () {
     return view('admin.deskripsi.tambahDeskripsi', [
         'title' => 'admin tambah deskripsi',
     ]);
 })->middleware('is_admin');
+Route::resource('/admin/lokasi/lokasi', LokasiController::class)->middleware('is_admin');
+// Route::resource('/admin/lokasi/tambahlokasi', LokasiController::class, 'create')->middleware('is_admin');
+
+
+
+
 
 // Data masuk ke database
 // Route::get('/esp', [DataSensorController::class, 'store']);
@@ -91,6 +97,18 @@ Route::get('/admin/deskripsi/tambahdeskripsi', function () {
 
 // export excel
 Route::get('/exportch4', [ExportController::class, 'exportch4']);
+Route::get('/exportch4_', [ExportController::class, 'exportch4_kode2']);
+Route::get('/exportch4_bulanan', [ExportController::class, 'exportch4_bulanan']);
+Route::get('/exportch4_bulnanan_', [ExportController::class, 'exportch4_bulanan_kode2']);
+Route::get('/exportco', [ExportController::class, 'exportco']);
+Route::get('/exportco_', [ExportController::class, 'exportco_kode2']);
+Route::get('/exportco_bulanan', [ExportController::class, 'exportco_bulanan']);
+Route::get('/exportco_bulanan_', [ExportController::class, 'exportco_bulanan_kode2']);
+Route::get('/exportnh3', [ExportController::class, 'exportnh3']);
+Route::get('/exportnh3_', [ExportController::class, 'exportnh3_kode2']);
+Route::get('/exportnh3_bulanan', [ExportController::class, 'exportnh3_bulanan']);
+Route::get('/exportnh3_bulanan_', [ExportController::class, 'exportnh3_bulanan_kode2']);
+
 
 
 

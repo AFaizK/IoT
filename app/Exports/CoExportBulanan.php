@@ -15,6 +15,7 @@ class CoExportBulanan implements FromCollection
     {
         $CO_bulanan = data_sensors::select(DB::raw("SUM(CO)/COUNT(CO) as count"), DB::raw("MONTHNAME(created_at) as month_name"), DB::raw("MONTH(created_at) as month"))
             ->where('created_at', '>', Carbon::today()->subMonth(12))
+            ->where('kode_sensor', '1')
             ->groupBy('month_name','month')
             ->orderBy('month')
             ->get();

@@ -15,14 +15,11 @@ class Nh3ExportHarian implements FromCollection
     {
         $NH3 = data_sensors::select(DB::raw("SUM(NH3)/COUNT(NH3) as count"), DB::raw("DAYNAME(created_at) as day_name"), DB::raw("DAY(created_at) as day"))
         ->where('created_at', '>', Carbon::today()->subDay(6))
+        ->where('kode_sensor', '1')
         ->groupBy('day_name','day')
         ->orderBy('day')
         ->get();
 
-        foreach($NH3 as $row) {
-            $data['label'][] = $row->day_name;
-            $data['data'][] = (float) $row->count;
-        }
         return $NH3;
     }
 }

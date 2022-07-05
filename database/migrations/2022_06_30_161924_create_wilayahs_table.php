@@ -15,8 +15,9 @@ class CreateWilayahsTable extends Migration
     {
         Schema::create('wilayahs', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->string('wilayah');
+            $table->bigInteger('data_sensor_id');
+            $table->timestamps();
         });
     }
 
