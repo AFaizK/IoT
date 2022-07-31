@@ -27,7 +27,7 @@ use App\Http\Controllers\KarbonDioksidaController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', [KarbonDioksidaController::class, 'index']);
+Route::get('/', [KarbonDioksidaController::class, 'index'])->name('dashboard');
 // Route::post('/esp', [DataSensorController::class, 'store']);
 
 // Route::get('/', function () {
@@ -72,7 +72,7 @@ Route::get('/contactus', [ContactUsController::class, 'index']);
 Route::post('/contactus', [ContactUsController::class, 'store']);
 
 Route::resource('/admin/pesan/pesan', AdminPesanController::class)->middleware('is_admin');
-// Route::get('/admin/pesan/pesan/{contact_us}',[AdminPesanController::class, 'show'])->middleware('is_admin');
+Route::get('/admin/pesan/pesan/{contact_us}',[AdminPesanController::class, 'show'])->middleware('is_admin');
 // Route::delete('/admin/pesan/pesan/{contact_us}',[AdminPesanController::class, 'destroy'])->middleware('is_admin');
 // route::post('/admin/pesan/pesan', PesanController::class)->middleware('is_admin');
  

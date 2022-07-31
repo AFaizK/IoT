@@ -13,10 +13,20 @@ class AdminPesanController extends Controller
      */
     public function index()
     {
+        // dd(request('search'));
+       
+
+            if(request('search')){
+                $pesan =  ContactUs::where('pesan', 'like', '%' . request('search') . '%')->paginate(2);
+
+            }else{
+                $pesan = ContactUs::latest()->paginate(2);
+
+            }
         return view('admin.pesan.pesan',[
-           
             'title'=>'contact',
-            'contact_us' =>  ContactUs::paginate(2)
+            'contact_us' =>  $pesan
+    
         ]);
     
     }
@@ -50,7 +60,8 @@ class AdminPesanController extends Controller
      */
     public function show($id)
     {
-        $contactus = ContactUs::find($id)->first();
+        $contactus = contactus::select('nama','pesan', 'id')->where('id', $id)->first();
+        // $contactus = contactus::find($id)->first();
         return view('admin.pesan.show',[
                 "title" => "contact",
                 "contact_us" => $contactus

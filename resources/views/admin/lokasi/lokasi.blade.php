@@ -5,7 +5,7 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title">Tambah Deskripsi Untuk Tampilan NH3, CH4 dan CO</h3>
+            <h3 class="card-title">Tambah Lokasi</h3>
 
             @if (session()->has('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -21,8 +21,8 @@
                 <thead>
                     <tr>
                         <th class="text-center">No</th>
-                        <th class="text-center">Judul</th>
-                        <th class="text-center">Kode Sensor</th>
+                        <th class="text-center">id</th>
+                        <th class="text-center">Wilayah</th>
                         <th class="text-right" style="text-align-last: center;">Actions</th>
                     </tr>
                 </thead>
@@ -30,12 +30,9 @@
                 @foreach($lokasis as $lokasi)                       
                     <tr>
                         <td class="text-center">{{ $loop->iteration }}</td>
+                        <td class="text-center">{{ $lokasi->id }}</td>
                         <td class="text-center">{{ $lokasi->wilayah }}</td>
-                        <td class="text-center">{{ $lokasi->data_sensor->kode_sensor }}</td>
                         <td class="td-actions text-right" style="text-align-last: center;">
-                            <a href="/admin/lokasi/lokasi/{{ $lokasi->id }}"><button type="button" rel="tooltip" class="badge btn-danger btn-link btn-icon btn-sm m-2">
-                                <i class="bi bi-eye"></i>
-                            </a>
                             <a href="/admin/lokasi/lokasi/{{ $lokasi->id }}/edit"><button type="button" rel="tooltip" class="badge btn-danger btn-link btn-icon btn-sm m-2">
                                 <i class="bi bi-pencil-square"></i>
                             </a>
@@ -59,7 +56,7 @@
             </div>
           </div>
           <a href="{{url('/admin/lokasi/lokasi/create')}}"><button class="btn btn-primary btn-simple m-3" style="float: right;">
-            Tambah Deskripsi
+            Tambah Lokasi
           </button></a>
         </div>
       </div>

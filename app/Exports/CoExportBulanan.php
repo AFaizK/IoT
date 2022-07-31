@@ -21,4 +21,12 @@ class CoExportBulanan implements FromCollection
             ->get();
         return $CO_bulanan;
     }
+    public function headings(): array
+    {
+        return [
+            'Data Sensor',
+            'Tanggal',
+            'Pos',
+        ];
+    }
 }

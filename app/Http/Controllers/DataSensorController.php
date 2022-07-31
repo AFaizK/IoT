@@ -18,20 +18,21 @@ class DataSensorController extends Controller
         $CO = $request->input('CO');
         $CH4 = $request->input('CH4');
         $NH3 = $request->input('NH3');
-        $kode_sensor = $request->input('kode_sensor');
+        $id_wilayah = $request->input('id_wilayah');
         
         $validate = $request->validate([
             'CO' => 'required',
             'NH3' => 'required',
             'CH4' => 'required',
-            'kode_sensor' => 'required',
+            'id_wilayah' => 'required',
             // 'created_at' => 'required',
             ]);
             
         $validate['CO']= $CO;
         $validate['NH3']= $NH3;
+        $validate['created_at']= $tgl;
         $validate['CH4']= $CH4;
-        $validate['kode_sensor']= $kode_sensor;
+        $validate['id_wilayah']= $id_wilayah;
         $response = data_sensors::create($validate);
     
         return response()->json($response);

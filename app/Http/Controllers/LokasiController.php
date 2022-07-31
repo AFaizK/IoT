@@ -20,7 +20,7 @@ class LokasiController extends Controller
         return view('admin.lokasi.lokasi',[
            
             'title'=>'Wilayah',
-            'lokasis' => Wilayah::with('data_sensor')->latest()->paginate(2)
+            'lokasis' => Wilayah::latest()->paginate(2)
         ]);
     }
 
@@ -33,8 +33,7 @@ class LokasiController extends Controller
     {
      
         return view('admin.lokasi.tambahLokasi',[
-            'title' => 'admin tambah lokasi',
-            'sensor' =>  data_sensors::all()
+            'title'=>'Wilayah',
         ]);
     }
 
@@ -46,16 +45,14 @@ class LokasiController extends Controller
      */
     public function store(Request $request)
     {
-        // $validateData = $request->validate([
-        //     'wilayah' => 'required|max:255',
-        //     'data_sensor_id' => 'required',
-        // ]);
-
-        // Wilayah::create($validateData);
-        Wilayah::create([
-            'wilayah' => $request->wilayah,
-            'data_sensor_id' => $request->data_sensor_id,
+        $validateData = $request->validate([
+            'wilayah' => 'required|max:255',
         ]);
+
+        Wilayah::create($validateData);
+        // Wilayah::create([
+        //     'wilayah' => $request->wilayah,
+        // ]);
         return redirect('admin/lokasi/lokasi')->with('success', 'Lokasi berhasil ditambahkan');
         // dd($request->all());
     }
@@ -77,9 +74,12 @@ class LokasiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Wilayah $wilayah)
     {
-        //
+        return view('admin.lokasi.edit', [
+            "title" => "wilayah",
+             "wilayah" => $wilayah
+       ]);
     }
 
     /**
@@ -89,9 +89,13 @@ class LokasiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, Wilayah $wilayah)
     {
-        //
+        $validateData = $request->validate([
+            'wilayah' => 'required',
+        ]);
+        Wilayah::where('id', $wilayah->id)->update($validateData);
+        return redirect('/admin/lokasi/lokasi')->with('success','lokasi sekarang sudah diupdate');
     }
 
     /**
@@ -101,7 +105,10 @@ class LokasiController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        //
+    {  
+        $lokasi = Wilayah::find($id);
+        $lokasi->delete();
+        // ContactUs::destroy($contactus->id);
+        return redirect('/admin/lokasi/lokasi')->with('success','lokasi sekarang sudah dihapus');
     }
 }

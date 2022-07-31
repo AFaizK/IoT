@@ -15,7 +15,7 @@ class Wilayah extends Model
     // ];
 
       public function data_sensor(){
-        return $this->belongsTo(data_sensors::class);
+        return $this->hasMany(data_sensors::class);
     }
     
 }

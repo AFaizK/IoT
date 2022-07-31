@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Pagination\Paginator;
 use ConsoleTVs\Charts\Registrar as Charts;
 use Illuminate\Support\Facades\Gate;
@@ -27,6 +28,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        config(['app.locale' => 'id']);
+        Carbon::setLocale('id');
         paginator::useBootstrap();
         Gate::define('is_admin', function(User $user)
         {
@@ -36,6 +39,7 @@ class AppServiceProvider extends ServiceProvider
         {
             return $user->role == '0';
         });
+    
      
         
     }

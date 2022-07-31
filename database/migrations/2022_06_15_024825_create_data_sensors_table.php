@@ -18,7 +18,7 @@ class CreateDataSensorsTable extends Migration
             $table->string('CH4');
             $table->string('NH3');
             $table->string('CO');
-            $table->bigInteger('kode_sensor');
+            $table->bigInteger('id_wilayah');
             $table->timestamps();
         });
     }
